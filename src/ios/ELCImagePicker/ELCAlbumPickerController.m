@@ -67,7 +67,8 @@
             // Group Enumerator Failure Block
             void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
                 
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                //UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+  	         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Missing permission: Please change your permissions settings for image access by this app." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];			    
                 [alert show];
                 
                 NSLog(@"A problem occured %@", [error description]);	                                 
