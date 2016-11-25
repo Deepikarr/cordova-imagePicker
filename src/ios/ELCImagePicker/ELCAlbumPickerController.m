@@ -21,6 +21,14 @@
 
 #pragma mark -
 #pragma mark View lifecycle
+	
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+}	
 
 - (void)viewDidLoad
 {
@@ -69,13 +77,12 @@
                 
                 //UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
   	        // UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Missing permission: Please change your permissions settings for image access by this app." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];			    
-		  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]
-                                                    objectForInfoDictionaryKey:@"CFBundleDisplayName"]
-                                          message:NSLocalizedString(@"Access to the Photos has been prohibited; please enable it in the Settings app to continue.", nil)
-                                          delegate:weakSelf
-                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                          otherButtonTitles:settingsButton, nil] show];			    
-                [alert show];
+		  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"AlertView")
+                                     message:NSLocalizedString(@"Access to the photos has been prohibited; please enable it in the Settings app to continue.", @"AlertView")
+                          	     delegate:self
+                                     cancelButtonTitle:NSLocalizedString(@"ok", @"AlertView")
+                                     otherButtonTitles:NSLocalizedString(@"settings", @"AlertView"), nil];
+                [alertView show];
                 
                 NSLog(@"A problem occured %@", [error description]);	                                 
             };	
