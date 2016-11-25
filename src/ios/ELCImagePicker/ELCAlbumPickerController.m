@@ -68,7 +68,13 @@
             void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
                 
                 //UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-  	         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Missing permission: Please change your permissions settings for image access by this app." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];			    
+  	        // UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Missing permission: Please change your permissions settings for image access by this app." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];			    
+		  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]
+                                                    objectForInfoDictionaryKey:@"CFBundleDisplayName"]
+                                          message:NSLocalizedString(@"Access to the Photos has been prohibited; please enable it in the Settings app to continue.", nil)
+                                          delegate:weakSelf
+                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                          otherButtonTitles:settingsButton, nil] show];			    
                 [alert show];
                 
                 NSLog(@"A problem occured %@", [error description]);	                                 
